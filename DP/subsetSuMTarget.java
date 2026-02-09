@@ -24,6 +24,7 @@ public class subsetSuMTarget {
         return dp[idx][target] = (pick || notPick);
     }
 
+    // tabulation
     private static boolean subSumT(int arr[], int target) {
         int n = arr.length;
         boolean dp[][] = new boolean[n][target + 1];
