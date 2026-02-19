@@ -3,6 +3,8 @@ package DP;
 import java.util.*;
 
 class coinChange {
+
+    // memoization
     public int coinChange(int[] coins, int amount) {
         int n = coins.length;
         int dp[][] = new int[n][amount + 1];
