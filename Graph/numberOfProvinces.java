@@ -1,6 +1,8 @@
 package Graph;
 //547. Number of Provinces(leet code)
 
+/// BASICALLY NUMBER OF DISCONNECTED GRAPHS-. HELPFULL
+
 import java.util.ArrayList;
 import java.util.List;
 
