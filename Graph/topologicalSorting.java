@@ -1,8 +1,10 @@
 package Graph;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
-public class cycleDetectionDirected {
+public class topologicalSorting {
+
     static class Edge {
         int src;
         int dest;
@@ -24,30 +26,29 @@ public class cycleDetectionDirected {
         }
     }
 
-    public static boolean cycleDetectionDirected(ArrayList<Edge> graph[], int curr, boolean vis[], boolean recStack[]) {
+    public static void topoSort(ArrayList<Edge> graph[], boolean vis[], int curr, Stack<Integer> s) {
         vis[curr] = true;
-        recStack[curr] = true;
         for (int i = 0; i < graph[curr].size(); i++) {
             Edge e = graph[curr].get(i);
-            if (recStack[e.dest] == true) {
-                return true;
-            } else if (!vis[e.dest]) {
-                boolean a = cycleDetectionDirected(graph, e.dest, vis, recStack);
-                if (a)
-                    return true;
+            if (!vis[e.dest]) {
+                topoSort(graph, vis, e.dest, s);
             }
         }
-        recStack[curr] = false;
-        return false;
+        s.push(curr);
     }
 
     public static void main(String args[]) {
-        int paths[][] = { { 1, 0 }, { 0, 2 }, { 2, 3 }, { 3, 0 } };
-        int n = 4;
+        int paths[][] = { { 0, 1 }, { 0, 2 }, { 1, 3 }, { 2, 3 }, { 3, 4 } };
+        int n = 5;// no. of nodes
         ArrayList<Edge> graph[] = new ArrayList[n];
         createGraph(paths, graph);
+
+        Stack<Integer> s = new Stack<>();
         boolean vis[] = new boolean[n];
-        boolean recStack[] = new boolean[n];
-        System.out.println(cycleDetectionDirected(graph, 0, vis, recStack));
+        topoSort(graph, vis, 0, s);
+
+        while (!s.isEmpty()) {
+            System.out.print(s.pop() + " ");
+        }
     }
 }
