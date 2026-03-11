@@ -24,7 +24,8 @@ public class cyceDetection {
         }
     }
 
-    public static boolean cycleDetc(ArrayList<Edge> graph[], boolean vis[], int curr, boolean recStack[]) {
+    // DIRECTED GRAPH
+    public static boolean cycleDetectionDirected(ArrayList<Edge> graph[], boolean vis[], int curr, boolean recStack[]) {
         vis[curr] = true;
         recStack[curr] = true;
         for (int i = 0; i < graph[curr].size(); i++) {
@@ -32,12 +33,28 @@ public class cyceDetection {
             if (recStack[e.dest] == true) {
                 return true;
             } else if (!vis[e.dest]) {
-                if (cycleDetc(graph, vis, e.dest, recStack)) {
+                if (cycleDetectionDirected(graph, vis, e.dest, recStack)) {
                     return true;
                 }
             }
         }
         recStack[curr] = false;
+        return false;
+    }
+
+    // UNDIRECTED GRAPH
+    public static boolean cycleDetectionUndirected(ArrayList<Edge> graph[], boolean vis[], int curr, int parent) {
+        vis[curr] = true;
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+            if (!vis[e.dest]) {
+                if (cycleDetectionUndirected(graph, vis, e.dest, curr)) {
+                    return true;
+                }
+            } else if (e.dest != parent) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -48,6 +65,10 @@ public class cyceDetection {
         createGraph(graph, paths);
         boolean vis[] = new boolean[n];
         boolean recStack[] = new boolean[n];
-        System.out.println(cycleDetc(graph, vis, 0, recStack));
+        System.out.println(cycleDetectionDirected(graph, vis, 0, recStack));
+
+        boolean vis2[] = new boolean[n];
+        System.out.println(cycleDetectionUndirected(graph, vis2, 0, -1));
+
     }
 }
