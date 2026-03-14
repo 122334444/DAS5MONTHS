@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//LEETCODE 1415. The k-th Lexicographical String of All Happy Strings of Length n
+
 public class getHappyString {
     public String HappyString(int n, int k) {
         int size = (int) (3 * Math.pow(2, n - 1));
