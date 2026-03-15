@@ -53,5 +53,6 @@ public class intro {
         System.out.println("Tail: " + ll.tail.data);
         System.out.println("Size: " + ll.size);
         ll.display(ll);
+
     }
 }
