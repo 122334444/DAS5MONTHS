@@ -62,6 +62,8 @@ public class mst {
         System.out.println("Minimum Cost: " + finalCost);
     }
 
+    // TC -> O(ElogV) where E is the number of edges and V is the number of vertices
+
     public static void main(String args[]) {
         int paths[][] = {
                 { 0, 1, 10 },
