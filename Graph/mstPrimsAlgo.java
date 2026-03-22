@@ -1,9 +1,9 @@
 package Graph;
 
-//MINIMUM SPANNING TREE
+//MINIMUM SPANNING TREE(Prims Algorithm)
 import java.util.*;
 
-public class mst {
+public class mstPrimsAlgo {
 
     static class Edge {
         int src;
