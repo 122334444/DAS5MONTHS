@@ -1,4 +1,4 @@
-package DP;
+package DP.TwoDimention;
 
 public class subsetSuMTarget {
 
