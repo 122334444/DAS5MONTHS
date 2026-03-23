@@ -1,4 +1,4 @@
-package DP;
+package DP.dpOneDimention;
 
 public class fibinacci {
     // memoization
