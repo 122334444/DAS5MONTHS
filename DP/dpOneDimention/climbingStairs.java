@@ -14,8 +14,19 @@ public class climbingStairs {
         return a[n];
     }
 
+    public static int climbStarirRec(int idx) {
+        if (idx == 0)
+            return 1;
+        if (idx == -1)
+            return 0;// if we are at 1 and calling for idx-2
+        int l = climbStarirRec(idx - 1);
+        int r = climbStarirRec(idx - 2);
+        return l + r;
+    }
+
     public static void main(String args[]) {
         int n = 5;
         System.out.println(climbStairs(n));
+        System.out.println(climbStarirRec(n));
     }
 }
