@@ -14,7 +14,7 @@ public class climbingStairs {
         return a[n];
     }
 
-    public static int climbStarirRec(int idx) {
+    public static int climbStarirRec(int idx) {//
         if (idx == 0)
             return 1;
         if (idx == -1)
