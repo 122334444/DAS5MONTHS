@@ -20,7 +20,7 @@ public class displayArray {
     }
 
     public static int findMax(int[] arr, int n) {
-        // Base case: only one element
+        // Base case:if only one element is there
         if (n == 1) {
             return arr[0];
         }
