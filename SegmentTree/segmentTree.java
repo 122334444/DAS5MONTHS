@@ -2,40 +2,56 @@ package SegmentTree;
 
 public class segmentTree {
 
-    public static class SegmentTree {
+    static int tree[];
+    static int arr[] = { 1, 3, 2, 7, 9, 11 };
 
-        int tree[];
-        int arr[];
+    // build segment tree
+    static void build(int node, int start, int end) {
 
-        SegmentTree(int ar[]) {
-            arr = ar;
-            tree = new int[4 * arr.length];
-            build(1, 0, arr.length - 1);
+        if (start == end) {
+            tree[node] = arr[start];
+            return;
         }
 
-        private void build(int node, int st, int end) {
-            if (st == end) {
-                tree[node] = arr[st];
-            } else {
-                int mid = (st + end) / 2;
-                int left = node * 2;
-                int right = node * 2 + 1;
-                build(left, st, mid);
-                build(right, mid + 1, end);
-                tree[node] = Math.max(tree[left], tree[right]);
-            }
-        }
+        int mid = (start + end) / 2;
 
-        private int query(int node, int st, int end, int l, int r) {
+        build(2 * node, start, mid);
+        build(2 * node + 1, mid + 1, end);
 
-        }
-
-        int query(int l, int r) {
-
-        }
+        tree[node] = Math.max(tree[2 * node], tree[2 * node + 1]);
     }
 
-    public static void main(String args[]) throws Exception {
+    // range maximum query -> will return the maximum inna given range l,r
+    static int query(int node, int start, int end, int l, int r) {
 
+        // no overlap
+        if (r < start || end < l) {
+            return Integer.MIN_VALUE;
+        }
+
+        // complete overlap
+        if (l <= start && end <= r) {
+            return tree[node];
+        }
+
+        // partial overlap
+        int mid = (start + end) / 2;
+
+        int left = query(2 * node, start, mid, l, r);
+        int right = query(2 * node + 1, mid + 1, end, l, r);
+
+        return Math.max(left, right);
+    }
+
+    public static void main(String[] args) {
+
+        int n = arr.length;
+
+        tree = new int[4 * n];
+
+        build(1, 0, n - 1);
+
+        System.out.println(query(1, 0, n - 1, 1, 4)); // 9
+        System.out.println(query(1, 0, n - 1, 2, 5)); // 11
     }
 }
