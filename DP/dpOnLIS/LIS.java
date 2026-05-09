@@ -2,7 +2,7 @@ package DP.dpOnLIS;
 
 import java.util.Arrays;
 
-public class LIS {
+public class LIS {// LONGEST INCREASING SUB-SEQUENCE
 
     public static int lengthOfLIS(int[] nums) {
         int n = nums.length;
