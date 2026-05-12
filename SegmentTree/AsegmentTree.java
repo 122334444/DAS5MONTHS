@@ -1,6 +1,6 @@
 package SegmentTree;
 
-public class segmentTree {
+public class AsegmentTree {
 
     static int tree[];
     static int arr[] = { 1, 3, 2, 7, 9, 11 };
