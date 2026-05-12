@@ -21,7 +21,7 @@ public class BpointUpdate {
         tree[node] = Math.max(tree[2 * node], tree[2 * node + 1]);
     }
 
-    private static void update(int node, int st, int end, int pos, int val) {
+    public static void update(int node, int st, int end, int pos, int val) {
 
         if (st == end) {
             arr[st] = val;
