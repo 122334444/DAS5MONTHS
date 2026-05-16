@@ -1,5 +1,7 @@
 package DP.dpOneDimention;
 
+import java.util.*;
+
 ///You are climbing a staircase. It takes n steps to reach the top. 
 // Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
 
@@ -14,19 +16,24 @@ public class climbingStairs {
         return a[n];
     }
 
-    public static int climbStarirRec(int idx) {//
+    public static int climbStarirRec(int idx, int[] dp) {//
         if (idx == 0)
             return 1;
-        if (idx == -1)
-            return 0;// if we are at 1 and calling for idx-2
-        int l = climbStarirRec(idx - 1);
-        int r = climbStarirRec(idx - 2);
-        return l + r;
+
+        if (dp[idx] != -1)
+            return dp[idx];
+        int l = climbStarirRec(idx - 1, dp);
+        int r = 0;
+        if (idx > 1) {
+            r = climbStarirRec(idx - 2, dp);
+        }
+        return dp[idx] = (l + r);
     }
 
     public static void main(String args[]) {
         int n = 5;
-        System.out.println(climbStairs(n));
-        System.out.println(climbStarirRec(n));
+        int dp[] = new int[n + 1];// size n+1 because we need to access 0 to n (n+1 length)
+        Arrays.fill(dp, -1);
+        System.out.println(climbStarirRec(n, dp));
     }
 }

@@ -15,4 +15,8 @@ public class targetSumWays {
         int sub = f(idx - 1, s - nums[idx], target, nums);
         return add + sub;// Number of all ways
     }
+
+    // Q. Given an array and a target aim is to find number of ways in whic target
+    // can be find by only + & -
+    // LeetCode 494
 }
